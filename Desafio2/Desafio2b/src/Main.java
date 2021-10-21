@@ -1,4 +1,4 @@
-public class CarroTeste {
+public class Main {
     public static void main(String[] args) {
         Carro mustangBoss = new Carro();
         System.out.println(mustangBoss.motor.getRpm());
