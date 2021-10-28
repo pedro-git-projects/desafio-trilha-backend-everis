@@ -1,5 +1,7 @@
 package trilha.back.finances.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.catalina.LifecycleState;
 import org.springframework.web.bind.annotation.*;
 import trilha.back.finances.models.Entry;
@@ -10,15 +12,18 @@ import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/entry")
+@Api(tags = "Entries")
 public class EntryController {
 
     //List<Entry>
 
+    @ApiOperation(value = "Post entry")
     @PostMapping
     public Entry postEntry(@RequestBody Entry entryBody) {
         return entryBody;
     }
 
+    @ApiOperation(value = "Get entry")
     @GetMapping
     public List getEntry() {
         List<Entry> entryList = new ArrayList<>();
