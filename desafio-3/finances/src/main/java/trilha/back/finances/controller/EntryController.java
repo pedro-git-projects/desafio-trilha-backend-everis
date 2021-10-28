@@ -2,13 +2,11 @@ package trilha.back.finances.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.catalina.LifecycleState;
 import org.springframework.web.bind.annotation.*;
 import trilha.back.finances.models.Entry;
 
 import java.time.LocalDate;
 import java.util.*;
-import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/entry")
