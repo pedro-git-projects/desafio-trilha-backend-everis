@@ -11,7 +11,9 @@
 - Maven
 - Intellij ou Eclipse
 - Git
-## 📅 Entrega
 
-- Desafio 1 (Prazo de 1 dia)
-- Desafio 2 (Prazo de 2 dias)
+## 📅 Desafios Entregues
+
+- Desafio 1 
+- Desafio 2 
+- Desafio 3 
