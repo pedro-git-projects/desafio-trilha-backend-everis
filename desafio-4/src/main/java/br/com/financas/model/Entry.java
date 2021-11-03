@@ -1,13 +1,39 @@
 package br.com.financas.model;
 
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "entries")
 public class Entry {
-    private long id, categoryId;
-    private String name, description, type, amount, date;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @Column (name = "categoryId")
+    private long categoryId;
+
+    @Column (name = "name")
+    private String name;
+
+    @Column (name = "description")
+    private String description;
+
+    @Column (name = "type")
+    private String type;
+
+    @Column (name = "amount")
+    private String amount;
+
+    @Column (name = "date")
+    private String date;
+
+    @Column (name = "paid")
     private boolean paid;
 
     // Constructors
-    public Entry(long id, long categoryId, String name, String description, String type, String amount, String date, boolean paid) {
-        this.id = id;
+    public Entry(long categoryId, String name, String description, String type, String amount, String date, boolean paid) {
         this.categoryId = categoryId;
         this.name = name;
         this.description = description;
