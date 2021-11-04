@@ -11,31 +11,28 @@ public class Entry {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column (name = "categoryId")
-    private long categoryId;
+    @Column
+    private String title;
 
-    @Column (name = "name")
-    private String name;
-
-    @Column (name = "description")
+    @Column
     private String description;
 
-    @Column (name = "type")
+    @Column
     private String type;
 
-    @Column (name = "amount")
+    @Column
     private String amount;
 
-    @Column (name = "date")
+    @Column
     private String date;
 
-    @Column (name = "paid")
+    @Column
     private boolean paid;
 
-    // Constructors
-    public Entry(long categoryId, String name, String description, String type, String amount, String date, boolean paid) {
-        this.categoryId = categoryId;
-        this.name = name;
+
+    public Entry(String title, String description, String type, String amount, String date, boolean paid) {
+
+        this.title = title;
         this.description = description;
         this.type = type;
         this.amount = amount;
@@ -43,9 +40,6 @@ public class Entry {
         this.paid = paid;
     }
 
-    public Entry() {
-
-    }
 
     // Getters & Setters
 
@@ -53,12 +47,10 @@ public class Entry {
         return id;
     }
 
-    public long getCategoryId() {
-        return categoryId;
-    }
 
-    public String getName() {
-        return name;
+
+    public String getTitle() {
+        return title;
     }
 
     public String getDescription() {
@@ -85,12 +77,10 @@ public class Entry {
         this.id = id;
     }
 
-    public void setCategoryId(long categoryId) {
-        this.categoryId = categoryId;
-    }
 
-    public void setName(String name) {
-        this.name = name;
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setDescription(String description) {
@@ -118,8 +108,7 @@ public class Entry {
     public String toString() {
         return "Entry{" +
                 "id=" + id +
-                ", categoryId=" + categoryId +
-                ", name='" + name + '\'' +
+                ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", type='" + type + '\'' +
                 ", amount='" + amount + '\'' +

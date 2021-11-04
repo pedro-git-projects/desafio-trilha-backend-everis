@@ -16,7 +16,7 @@
 
 Esta é uma interface que estende a classe JpaRepository. Isso nos dá acesso aos métodos save(), findOne(); findBy(), findAll(), count(), delete(), deleteById() dentre outros.
 
-Além disso, para cumprir o desafio, adicionamos os métodos *finder* customizados findByName e findByDescription.
+Além disso, para cumprir o desafio, adicionamos o método *finder* customizado findByPayment.
 
 # REST API Controller
 

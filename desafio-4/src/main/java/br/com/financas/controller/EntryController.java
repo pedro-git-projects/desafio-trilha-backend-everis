@@ -15,64 +15,62 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api")
 public class EntryController {
-
     @Autowired
     EntryRepository entryRepository;
 
-
     @GetMapping("/entries")
-    public ResponseEntity<List<Entry>> getAllEntries(@RequestParam(required = false)String name) {
+    public ResponseEntity<List<Entry>> getAllEntries(@RequestParam(required = false) String title) {
+        List<Entry> entries = new ArrayList<>();
         try {
-            List<Entry> entries = new ArrayList<>();
-
-            if(name == null) {
-                entries.addAll(entryRepository.findAll());
-            } else
-                entries.addAll(entryRepository.findByContaining(name));
-            if(entries.isEmpty()) {
-                return  new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            if (title == null) {
+                entryRepository.findAll().forEach(entries::add);
+            } else {
+                entryRepository.findByTitle(title).forEach(entries::add);
             }
-            return  new ResponseEntity<>(entries, HttpStatus.OK);
+            if (entries.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-
     @GetMapping("/entries/{id}")
-    public ResponseEntity<Entry> getEntryById(@PathVariable("id") long id) {
+    public ResponseEntity<Entry> getEntryById (@PathVariable("id") long id) {
         Optional<Entry> entryData = entryRepository.findById(id);
 
-        return entryData.map(entry -> new ResponseEntity<>(entry, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-
+        if (entryData.isPresent()) {
+            return new ResponseEntity<>(entryData.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping("/entries")
-    public ResponseEntity<Entry> createEntry(@RequestBody Entry entry) {
+    public  ResponseEntity<Entry> createEntry (@RequestBody Entry entry) {
         try {
             Entry _entry = entryRepository
-                    .save(new Entry(entry.getCategoryId(), entry.getName(), entry.getDescription(), entry.getType(), entry.getAmount(), entry.getDate(), false));
-                    return new ResponseEntity<>(_entry,HttpStatus.CREATED);
+                    .save(new Entry(entry.getTitle(), entry.getDescription(), entry.getType(),entry.getAmount(),entry.getDate(), false));
+            return  new ResponseEntity<>(_entry, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @PutMapping("/entries/{id}")
-    public ResponseEntity<Entry> updateEntry(@PathVariable("id")long id, @RequestBody Entry entry) {
+    public ResponseEntity<Entry> updateEntry(@PathVariable("id") long id, @RequestBody Entry entry) {
         Optional<Entry> entryData = entryRepository.findById(id);
 
         if(entryData.isPresent()) {
             Entry _entry = entryData.get();
-            _entry.setId(entry.getId());
-            _entry.setCategoryId(entry.getCategoryId());
-            _entry.setName(entry.getName());
+            _entry.setTitle(entry.getTitle());
             _entry.setDescription(entry.getDescription());
             _entry.setType(entry.getType());
             _entry.setAmount(entry.getAmount());
             _entry.setDate(entry.getDate());
             _entry.setPaid(entry.isPaid());
-            return new ResponseEntity<>(entryRepository.save(_entry));
+            return new ResponseEntity<>(entryRepository.save(_entry), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -82,7 +80,7 @@ public class EntryController {
     public ResponseEntity<HttpStatus> deleteEntry(@PathVariable("id") long id) {
         try {
             entryRepository.deleteById(id);
-            return  new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -93,20 +91,6 @@ public class EntryController {
         try {
             entryRepository.deleteAll();
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @GetMapping("/entries/paid")
-    public ResponseEntity<List<Entry>> findByPaid() {
-        try {
-            List<Entry> entries = entryRepository.findByPayment(true);
-
-            if(entries.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-            return new ResponseEntity<>(entries, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
