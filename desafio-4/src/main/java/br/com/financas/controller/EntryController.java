@@ -57,7 +57,7 @@ public class EntryController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    // not working
     @PutMapping("/entries/{id}")
     public ResponseEntity<Entry> updateEntry(@PathVariable("id") long id, @RequestBody Entry entry) {
         Optional<Entry> entryData = entryRepository.findById(id);
@@ -75,7 +75,7 @@ public class EntryController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
+    // not working
     @DeleteMapping("/entries/{id}")
     public ResponseEntity<HttpStatus> deleteEntry(@PathVariable("id") long id) {
         try {
@@ -85,12 +85,25 @@ public class EntryController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    //not working
     @DeleteMapping("/entries")
     public ResponseEntity<HttpStatus> deleteAllEntries() {
         try {
             entryRepository.deleteAll();
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/entries/paid")
+    public ResponseEntity<List<Entry>> findByPublished() {
+        try {
+            List<Entry> entries = entryRepository.findByPaid(true);
+
+            if (entries.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            } return new ResponseEntity<>(entries, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
