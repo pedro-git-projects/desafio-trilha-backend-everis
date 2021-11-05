@@ -36,22 +36,19 @@ public class EntryController {
         }
     }
 
-    @GetMapping("/entries/{id}")
-    public ResponseEntity<Entry> getEntryById (@PathVariable("id") long id) {
+    @GetMapping(path = {"/entries/{id}"})
+    public ResponseEntity<Entry> getEntryById(@PathVariable Long id) {
         Optional<Entry> entryData = entryRepository.findById(id);
-
-        if (entryData.isPresent()) {
-            return new ResponseEntity<>(entryData.get(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        System.out.println(entryData);
+        return entryData.map(entry -> new ResponseEntity<>(entry, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping("/entries")
-    public  ResponseEntity<Entry> createEntry (@RequestBody Entry entry) {
+    public  ResponseEntity<Entry> createEntry(@RequestBody Entry entry) {
         try {
             Entry _entry = entryRepository
-                    .save(new Entry(entry.getTitle(), entry.getDescription(), entry.getType(),entry.getAmount(),entry.getDate(), false));
+                    .save(new Entry( entry.getTitle(), entry.getDescription(), entry.getType(),entry.getAmount(),entry.getDate(), false));
             return  new ResponseEntity<>(_entry, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

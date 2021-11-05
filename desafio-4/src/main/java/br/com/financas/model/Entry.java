@@ -30,7 +30,7 @@ public class Entry {
     private boolean paid;
 
 
-    public Entry(String title, String description, String type, String amount, String date, boolean paid) {
+    public Entry( String title, String description, String type, String amount, String date, boolean paid) {
 
         this.title = title;
         this.description = description;
