@@ -40,6 +40,8 @@ public class Entry {
         this.paid = paid;
     }
 
+    public Entry () {};
+
 
     // Getters & Setters
 
