@@ -13,7 +13,7 @@ public class ModelMapperConfig {
 }
 
 /*
-* Strictu sensu eu não precisei dessa classe, o spring foi capaz de gerenciar corretamente o model mapper sem
+* Stricto sensu eu não precisei dessa classe, o spring foi capaz de gerenciar corretamente o model mapper sem
 * a necessidade da criação de uma classe de configuração.
 * Entretanto criei de qualquer forma para deixar registrado o procedimento completo.
 * */
