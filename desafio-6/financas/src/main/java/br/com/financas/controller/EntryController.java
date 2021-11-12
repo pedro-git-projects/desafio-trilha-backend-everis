@@ -54,11 +54,12 @@ public class EntryController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Entry> update(@Valid @RequestBody Entry _entry, BindingResult bindingResult) {
+    @ResponseStatus(HttpStatus.OK)
+    public void update(@Valid @RequestBody EntryDTO entryDTO, BindingResult bindingResult) throws ParseException {
         if(bindingResult.hasErrors())
             throw new ConstraintException(bindingResult.getAllErrors().get(0).getDefaultMessage());
-        _entry = service.update(_entry);
-        return  ResponseEntity.ok().body(_entry);
+        Entry _entry = convertToEntity(entryDTO);
+        service.update(_entry);
     }
 
     @DeleteMapping(value = "/{id}")
