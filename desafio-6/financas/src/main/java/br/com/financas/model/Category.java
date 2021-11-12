@@ -3,6 +3,7 @@ package br.com.financas.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -11,21 +12,20 @@ import javax.validation.constraints.NotEmpty;
 @Table(name = "categories")
 @Data
 @NoArgsConstructor
+@Accessors(chain = true)
 @ToString
 public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NotEmpty(message = "O título é um campo obrigatório")
-    @Column(name = "title")
+    @NotEmpty(message = "O título é obrigatório")
+    @Column
     private String title;
 
-    @NotEmpty(message = "A descrição é um campo obrigatório")
-    @Column(name = "description")
+    @NotEmpty(message = "A descrição é obrigatória")
     private String description;
-
 
     public Category(String title, String description) {
         this.title = title;

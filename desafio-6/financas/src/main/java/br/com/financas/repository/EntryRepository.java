@@ -15,4 +15,5 @@ public interface EntryRepository extends JpaRepository<Entry, Long> {
 
     @Transactional(readOnly = true)
     List<Entry> findByPaid(Boolean paid);
+
 }

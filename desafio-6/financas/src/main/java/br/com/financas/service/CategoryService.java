@@ -1,16 +1,14 @@
 package br.com.financas.service;
 
-
 import br.com.financas.model.Category;
 import br.com.financas.repository.CategoryRepository;
-import br.com.financas.service.excepctions.DataIntegrityViolationException;
-import br.com.financas.service.excepctions.ObjectNotFoundException;
+import br.com.financas.service.exceptions.DataIntegrityViolationException;
+import br.com.financas.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.NoSuchElementException;
-
 
 @Service
 public class CategoryService {

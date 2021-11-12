@@ -1,2 +1,4 @@
-package br.com.financas.dto.request;public class CategoryDTO {
+package br.com.financas.dto.request;
+
+public class CategoryDTO {
 }

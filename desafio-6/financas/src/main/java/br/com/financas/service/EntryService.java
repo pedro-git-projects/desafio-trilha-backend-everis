@@ -1,16 +1,17 @@
 package br.com.financas.service;
 
-
+import br.com.financas.model.Category;
 import br.com.financas.model.Entry;
+import br.com.financas.repository.CategoryRepository;
 import br.com.financas.repository.EntryRepository;
-import br.com.financas.service.excepctions.DataIntegrityViolationException;
-import br.com.financas.service.excepctions.ObjectNotFoundException;
+import br.com.financas.service.exceptions.DataIntegrityViolationException;
+import br.com.financas.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.NoSuchElementException;
-
 
 @Service
 public class EntryService {
@@ -26,7 +27,7 @@ public class EntryService {
         }
     }
 
-    public Collection<Entry> findAll() {
+    public List<Entry> findAll() {
         return repository.findAll();
     }
 
@@ -56,11 +57,11 @@ public class EntryService {
         }
     }
 
-    public Collection<Entry> findByTitle(final String title) {
+    public List<Entry> findByTitle(final String title) {
         return repository.findByTitle(title);
     }
 
-    public Collection<Entry> findByPaid(boolean paid) {
+    public List<Entry> findByPaid(boolean paid) {
         return repository.findByPaid(paid);
     }
 }

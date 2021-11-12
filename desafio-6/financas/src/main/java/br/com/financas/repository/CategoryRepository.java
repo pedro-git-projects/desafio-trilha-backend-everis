@@ -11,5 +11,6 @@ import java.util.List;
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 
     @Transactional(readOnly = true)
-    List<Category> findByTitle(String name);
+    List<Category> findByTitle(String title);
+
 }
