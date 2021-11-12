@@ -1,6 +1,9 @@
 package br.com.financas.controller;
 
+import br.com.financas.dto.request.CategoryDTO;
+import br.com.financas.dto.request.EntryDTO;
 import br.com.financas.model.Category;
+import br.com.financas.model.Entry;
 import br.com.financas.service.CategoryService;
 import br.com.financas.service.exceptions.ConstraintException;
 import org.modelmapper.ModelMapper;
@@ -10,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.ParseException;
 import java.util.Collection;
 
 @RestController
@@ -61,5 +65,27 @@ public class CategoryController {
         Collection<Category> categories = categoryService.findByTitle(title);
         return ResponseEntity.ok(categories);
     }
+
+    private CategoryDTO convertToDTO(Category category) {
+        CategoryDTO categoryDTO = modelMapper.map(category, CategoryDTO.class);
+        categoryDTO.setId(category.getId());
+        categoryDTO.setTitle(category.getTitle());
+        categoryDTO.setDescription(category.getDescription());
+        return categoryDTO;
+    }
+
+    private Category convertToEntity(CategoryDTO categoryDTO) throws ParseException {
+        Category category = modelMapper.map(categoryDTO, Category.class);
+        category.setId(categoryDTO.getId());
+        category.setTitle(categoryDTO.getTitle());
+        category.setDescription(categoryDTO.getDescription());
+
+        if(categoryDTO.getId() != null) {
+            Category oldCategory = categoryService.findById(categoryDTO.getId());
+        }
+        return category;
+
+    }
+
 
 }
