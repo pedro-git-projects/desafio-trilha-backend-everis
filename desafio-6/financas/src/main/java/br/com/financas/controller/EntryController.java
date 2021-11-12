@@ -37,9 +37,9 @@ public class EntryController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Entry> find(@PathVariable Long id) {
-        Entry _entry = service.findById(id);
-        return ResponseEntity.ok().body(_entry);
+    @ResponseBody
+    public  EntryDTO find(@PathVariable Long id) {
+        return convertToDTO(service.findById(id));
     }
 
     @PostMapping
