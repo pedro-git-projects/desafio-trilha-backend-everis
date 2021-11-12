@@ -63,9 +63,9 @@ public class EntryController {
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Long id) {
         service.delete(id);
-        return ResponseEntity.noContent().build();
     }
 
     @GetMapping(value = "/byTitle/{title}")
