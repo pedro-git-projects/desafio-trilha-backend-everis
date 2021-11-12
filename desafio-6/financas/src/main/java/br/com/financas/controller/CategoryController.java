@@ -1,9 +1,7 @@
 package br.com.financas.controller;
 
 import br.com.financas.dto.request.CategoryDTO;
-import br.com.financas.dto.request.EntryDTO;
 import br.com.financas.model.Category;
-import br.com.financas.model.Entry;
 import br.com.financas.service.CategoryService;
 import br.com.financas.service.exceptions.ConstraintException;
 import org.modelmapper.ModelMapper;
