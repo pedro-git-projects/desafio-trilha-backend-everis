@@ -6,6 +6,7 @@ import br.com.financas.service.EntryService;
 import br.com.financas.service.exceptions.ConstraintException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -42,11 +43,14 @@ public class EntryController {
     }
 
     @PostMapping
-    public ResponseEntity<Entry> insert(@Valid @RequestBody Entry _entry, BindingResult bindingResult) {
+    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
+    public EntryDTO insert(@Valid @RequestBody EntryDTO entryDTO, BindingResult bindingResult) throws ParseException {
         if (bindingResult.hasErrors())
             throw new ConstraintException(bindingResult.getAllErrors().get(0).getDefaultMessage());
-        _entry = service.insert(_entry);
-        return ResponseEntity.ok().body(_entry);
+        Entry entry = convertToEntity(entryDTO);
+        Entry insertEntry = service.insert(entry);
+        return convertToDTO(insertEntry);
     }
 
     @PutMapping(value = "/{id}")
