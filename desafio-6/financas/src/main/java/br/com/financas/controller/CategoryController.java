@@ -1,9 +1,9 @@
 package br.com.financas.controller;
 
-import br.com.financas.dto.request.CategoryDTO;
-import br.com.financas.model.Category;
-import br.com.financas.service.CategoryService;
-import br.com.financas.service.exceptions.ConstraintException;
+import br.com.financas.model.dto.CategoryDTO;
+import br.com.financas.model.entities.Category;
+import br.com.financas.model.service.CategoryService;
+import br.com.financas.model.service.exceptions.ConstraintException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -84,6 +84,4 @@ public class CategoryController {
         return category;
 
     }
-
-
 }

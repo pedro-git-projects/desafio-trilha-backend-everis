@@ -1,9 +1,10 @@
 package br.com.financas.controller;
 
-import br.com.financas.dto.request.EntryDTO;
-import br.com.financas.model.Entry;
-import br.com.financas.service.EntryService;
-import br.com.financas.service.exceptions.ConstraintException;
+import br.com.financas.model.dto.ChartDTO;
+import br.com.financas.model.dto.EntryDTO;
+import br.com.financas.model.entities.Entry;
+import br.com.financas.model.service.EntryService;
+import br.com.financas.model.service.exceptions.ConstraintException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -80,6 +81,12 @@ public class EntryController {
         return ResponseEntity.ok(entries);
     }
 
+    @GetMapping("lista/dashboard/{categoryID}/{entryID}")
+    public ResponseEntity<List<ChartDTO>> listaGrafico(@PathVariable Long categoryID, @PathVariable Long entryID) {
+        List<ChartDTO> resultado = service.listaGrafico(categoryID, entryID);
+        return ResponseEntity.ok(resultado);
+    }
+
     private EntryDTO convertToDTO(Entry entry) {
         EntryDTO entryDTO = modelMapper.map(entry, EntryDTO.class);
         entryDTO.setId(entry.getId());
@@ -88,6 +95,7 @@ public class EntryController {
         entryDTO.setType(entry.getType());
         entryDTO.setDate(entry.getDate());
         entryDTO.setPaid(entry.isPaid());
+        entryDTO.setCategory(entry.getCategoryID());
         return entryDTO;
     }
 
@@ -99,6 +107,7 @@ public class EntryController {
         entry.setType(entryDTO.getType());
         entry.setDate(entryDTO.getDate());
         entry.setPaid(entryDTO.isPaid());
+        entry.setCategoryID(entryDTO.getCategory());
 
         if(entryDTO.getId() != null) {
             Entry oldEntry = service.findById(entryDTO.getId());

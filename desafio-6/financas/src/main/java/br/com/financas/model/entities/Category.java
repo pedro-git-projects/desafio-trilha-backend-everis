@@ -1,4 +1,4 @@
-package br.com.financas.model;
+package br.com.financas.model.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,21 +7,20 @@ import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 @Entity
 @Table(name = "categories")
 @Data
 @NoArgsConstructor
 @Accessors(chain = true)
-@ToString
 public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotEmpty(message = "O título é obrigatório")
-    @Column
     private String title;
 
     @NotEmpty(message = "A descrição é obrigatória")
