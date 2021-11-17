@@ -1,6 +1,6 @@
-package br.com.financas.model.dto;
+package br.com.financas.models.dto;
 
-import br.com.financas.model.entities.Category;
+import br.com.financas.models.entities.Category;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

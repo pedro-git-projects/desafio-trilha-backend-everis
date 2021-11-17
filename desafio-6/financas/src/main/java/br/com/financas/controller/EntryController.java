@@ -1,10 +1,10 @@
 package br.com.financas.controller;
 
-import br.com.financas.model.dto.ChartDTO;
-import br.com.financas.model.dto.EntryDTO;
-import br.com.financas.model.entities.Entry;
-import br.com.financas.model.service.EntryService;
-import br.com.financas.model.service.exceptions.ConstraintException;
+import br.com.financas.models.dto.ChartDTO;
+import br.com.financas.models.dto.EntryDTO;
+import br.com.financas.models.entities.Entry;
+import br.com.financas.models.service.EntryService;
+import br.com.financas.models.service.exceptions.ConstraintException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

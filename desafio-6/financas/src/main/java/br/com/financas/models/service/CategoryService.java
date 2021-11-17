@@ -1,10 +1,10 @@
-package br.com.financas.model.service;
+package br.com.financas.models.service;
 
-import br.com.financas.model.entities.Category;
-import br.com.financas.model.repository.CategoryRepository;
-import br.com.financas.model.repository.EntryRepository;
-import br.com.financas.model.service.exceptions.DataIntegrityViolationException;
-import br.com.financas.model.service.exceptions.ObjectNotFoundException;
+import br.com.financas.models.entities.Category;
+import br.com.financas.models.repository.CategoryRepository;
+import br.com.financas.models.repository.EntryRepository;
+import br.com.financas.models.service.exceptions.DataIntegrityViolationException;
+import br.com.financas.models.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

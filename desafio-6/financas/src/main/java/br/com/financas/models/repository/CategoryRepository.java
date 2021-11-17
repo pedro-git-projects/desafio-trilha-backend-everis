@@ -1,6 +1,6 @@
-package br.com.financas.model.repository;
+package br.com.financas.models.repository;
 
-import br.com.financas.model.entities.Category;
+import br.com.financas.models.entities.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

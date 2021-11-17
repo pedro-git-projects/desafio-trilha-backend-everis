@@ -1,11 +1,12 @@
-package br.com.financas.model.service;
+package br.com.financas.models.service;
 
-import br.com.financas.model.dto.ChartDTO;
-import br.com.financas.model.entities.Entry;
-import br.com.financas.model.repository.CategoryRepository;
-import br.com.financas.model.repository.EntryRepository;
-import br.com.financas.model.service.exceptions.DataIntegrityViolationException;
-import br.com.financas.model.service.exceptions.ObjectNotFoundException;
+import br.com.financas.models.dto.ChartDTO;
+import br.com.financas.models.entities.Category;
+import br.com.financas.models.entities.Entry;
+import br.com.financas.models.repository.CategoryRepository;
+import br.com.financas.models.repository.EntryRepository;
+import br.com.financas.models.service.exceptions.DataIntegrityViolationException;
+import br.com.financas.models.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -68,9 +69,13 @@ public class EntryService {
         return entryRepository.findByPaid(paid);
     }
 
-    public  List<ChartDTO> listaGrafico(Long idCategoria, Long idLancamento) {
-        return new ArrayList<>();
-    }
+//    public  List<ChartDTO> listaGrafico(Long categoryID, Long entryID) {
+//        List<ChartDTO> dtos = new ArrayList<>();
+//        for(int i = 0; i < dtos.size(); i++) {
+//
+//        }
+//
+//    }
 
 
 }

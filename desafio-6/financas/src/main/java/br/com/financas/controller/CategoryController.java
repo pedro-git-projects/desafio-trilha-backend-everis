@@ -1,9 +1,9 @@
 package br.com.financas.controller;
 
-import br.com.financas.model.dto.CategoryDTO;
-import br.com.financas.model.entities.Category;
-import br.com.financas.model.service.CategoryService;
-import br.com.financas.model.service.exceptions.ConstraintException;
+import br.com.financas.models.dto.CategoryDTO;
+import br.com.financas.models.entities.Category;
+import br.com.financas.models.service.CategoryService;
+import br.com.financas.models.service.exceptions.ConstraintException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

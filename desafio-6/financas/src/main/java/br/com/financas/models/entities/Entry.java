@@ -1,6 +1,5 @@
-package br.com.financas.model.entities;
+package br.com.financas.models.entities;
 
-import br.com.financas.model.entities.Category;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;

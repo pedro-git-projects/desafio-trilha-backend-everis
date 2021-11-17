@@ -1,13 +1,11 @@
-package br.com.financas.model.entities;
+package br.com.financas.models.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.util.List;
 
 @Entity
 @Table(name = "categories")

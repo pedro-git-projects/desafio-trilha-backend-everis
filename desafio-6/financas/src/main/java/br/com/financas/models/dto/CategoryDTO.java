@@ -1,4 +1,4 @@
-package br.com.financas.model.dto;
+package br.com.financas.models.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

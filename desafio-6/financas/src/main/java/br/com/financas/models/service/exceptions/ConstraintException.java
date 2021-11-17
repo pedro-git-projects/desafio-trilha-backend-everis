@@ -1,4 +1,4 @@
-package br.com.financas.model.service.exceptions;
+package br.com.financas.models.service.exceptions;
 
 public class ConstraintException extends RuntimeException {
     private static final long serialVersionUID = 1L;
