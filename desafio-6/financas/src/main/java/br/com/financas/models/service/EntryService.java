@@ -21,7 +21,7 @@ public class EntryService {
 
     public Entry findById(final Long id) {
         try {
-            return entryRepository.findById(id).get();
+            return entryRepository.findById(id).orElse(null);
         } catch (NoSuchElementException e) {
             throw new ObjectNotFoundException("Objeto não encontrado!: " + id + ", Tipo: " + Entry.class.getName());
         }

@@ -23,7 +23,7 @@ public class CategoryService {
 
     public Category findById(final Long id) {
         try {
-            return categoryRepository.findById(id).get();
+            return categoryRepository.findById(id).orElse(null);
         } catch (NoSuchElementException e) {
             throw new ObjectNotFoundException("Objeto não encontrado!: " + id + ", Tipo: " + Category.class.getName());
         }

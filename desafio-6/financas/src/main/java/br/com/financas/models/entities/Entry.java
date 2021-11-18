@@ -16,7 +16,6 @@ import javax.validation.constraints.Pattern;
 @Data
 @NoArgsConstructor
 @ToString
-@Accessors(chain = true)
 public class Entry {
 
     @Id
