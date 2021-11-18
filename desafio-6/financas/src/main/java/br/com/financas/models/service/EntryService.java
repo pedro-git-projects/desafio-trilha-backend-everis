@@ -1,7 +1,5 @@
 package br.com.financas.models.service;
 
-import br.com.financas.models.dto.ChartDTO;
-import br.com.financas.models.entities.Category;
 import br.com.financas.models.entities.Entry;
 import br.com.financas.models.repository.CategoryRepository;
 import br.com.financas.models.repository.EntryRepository;
@@ -10,9 +8,7 @@ import br.com.financas.models.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 @Service
 public class EntryService {
@@ -43,10 +39,10 @@ public class EntryService {
         }
     }
 
-    public  Entry update(final Entry _entry) {
+    public void update(final Entry _entry) {
         findById(_entry.getId());
         try {
-            return entryRepository.save(_entry);
+            entryRepository.save(_entry);
         } catch (DataIntegrityViolationException e) {
             throw new DataIntegrityViolationException("Campo(s) obrigatório(s) não foram preenchidos");
         }
@@ -69,13 +65,6 @@ public class EntryService {
         return entryRepository.findByPaid(paid);
     }
 
-//    public  List<ChartDTO> listaGrafico(Long categoryID, Long entryID) {
-//        List<ChartDTO> dtos = new ArrayList<>();
-//        for(int i = 0; i < dtos.size(); i++) {
-//
-//        }
-//
-//    }
 
 
 }

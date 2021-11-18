@@ -4,12 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/*
-* this class will be used to flatten
-* entries and categories into a single
-* class
-* */
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

@@ -81,11 +81,11 @@ public class EntryController {
         return ResponseEntity.ok(entries);
     }
 
-    @GetMapping("lista/dashboard/{categoryID}/{entryID}")
-    public ResponseEntity<List<ChartDTO>> listaGrafico(@PathVariable Long categoryID, @PathVariable Long entryID) {
-        List<ChartDTO> resultado = service.listaGrafico(categoryID, entryID);
-        return ResponseEntity.ok(resultado);
-    }
+//    @GetMapping("lista/dashboard/{categoryID}/{entryID}")
+//    public ResponseEntity<List<ChartDTO>> listaGrafico(@PathVariable Long categoryID, @PathVariable Long entryID) {
+//        List<ChartDTO> resultado = service.listaGrafico(categoryID, entryID);
+//        return ResponseEntity.ok(resultado);
+//    }
 
     private EntryDTO convertToDTO(Entry entry) {
         EntryDTO entryDTO = modelMapper.map(entry, EntryDTO.class);
@@ -95,7 +95,7 @@ public class EntryController {
         entryDTO.setType(entry.getType());
         entryDTO.setDate(entry.getDate());
         entryDTO.setPaid(entry.isPaid());
-        entryDTO.setCategory(entry.getCategoryID());
+        entryDTO.setCategoryID(entry.getCategoryID());
         return entryDTO;
     }
 
@@ -107,7 +107,7 @@ public class EntryController {
         entry.setType(entryDTO.getType());
         entry.setDate(entryDTO.getDate());
         entry.setPaid(entryDTO.isPaid());
-        entry.setCategoryID(entryDTO.getCategory());
+        entry.setCategoryID(entryDTO.getCategoryID());
 
         if(entryDTO.getId() != null) {
             Entry oldEntry = service.findById(entryDTO.getId());

@@ -11,14 +11,12 @@ import lombok.NoArgsConstructor;
 public class EntryDTO {
 
     private  Long id;
-    private Category category;
+    private Category categoryID;
     private String title;
     private String description;
     private String type;
     private String amount;
     private String date;
     private boolean paid;
-
-
 
 }
