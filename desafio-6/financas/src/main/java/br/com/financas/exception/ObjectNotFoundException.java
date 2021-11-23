@@ -1,4 +1,4 @@
-package br.com.financas.models.service.exceptions;
+package br.com.financas.exception;
 
 public class ObjectNotFoundException extends RuntimeException {
     private  static final long  serialVersionUID = 1L;

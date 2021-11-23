@@ -1,87 +1,63 @@
 package br.com.financas.controller;
 
-import br.com.financas.models.dto.CategoryDTO;
-import br.com.financas.models.entities.Category;
-import br.com.financas.models.service.CategoryService;
-import br.com.financas.models.service.exceptions.ConstraintException;
-import org.modelmapper.ModelMapper;
+import br.com.financas.dto.category.CategoryRequestDTO;
+import br.com.financas.dto.category.CategoryResponseDTO;
+import br.com.financas.entity.Category;
+import br.com.financas.service.CategoryService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.text.ParseException;
-import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
+@Api( tags = "Categorias")
 @RestController
-@RequestMapping("/categories")
+@RequestMapping("/categorias")
 public class CategoryController {
 
     @Autowired
     private CategoryService categoryService;
 
-    @Autowired
-    private ModelMapper modelMapper;
-
-    @GetMapping
-    public ResponseEntity<Collection<Category>> findAll() {
-        Collection<Category> categories = categoryService.findAll();
-        return  ResponseEntity.ok().body(categories);
+    @ApiOperation(value = "Listar categorias")
+    @GetMapping(name = "Listar categorias")
+    public List<CategoryResponseDTO> listCategories () {
+        return categoryService.findAll().stream().map(category -> CategoryResponseDTO.convertToCategoryDTO(category))
+                .collect(Collectors.toList());
     }
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<Category> find(@PathVariable Long id) {
-        Category _category = categoryService.findById(id);
-        return ResponseEntity.ok().body(_category);
+    @ApiOperation(value = "Criar categoria")
+    @PostMapping(name = "Criar categoria")
+    public  ResponseEntity<CategoryResponseDTO> insert(@Valid @RequestBody CategoryRequestDTO categoryRequestDTO) {
+        Category categorySave = categoryService.insert(categoryRequestDTO.convertToEntity());
+        return ResponseEntity.status(HttpStatus.CREATED).body(CategoryResponseDTO.convertToCategoryDTO(categorySave));
     }
 
-    @PostMapping
-    public  ResponseEntity<Category> insert(@Valid @RequestBody Category _category, BindingResult bindingResult) {
-        if (bindingResult.hasErrors())
-            throw new ConstraintException(bindingResult.getAllErrors().get(0).getDefaultMessage());
-        _category = categoryService.insert(_category);
-        return ResponseEntity.ok().body(_category);
+    @ApiOperation(value = "Listar categoria pelo Id")
+    @GetMapping(name = "Listar categoria pelo Id", path = {"/{id}"})
+    public ResponseEntity<CategoryResponseDTO> find(@PathVariable Long id) {
+        Optional<Category> category = categoryService.findById(id);
+        return category.isPresent() ? ResponseEntity.ok(CategoryResponseDTO.convertToCategoryDTO(category.get())) : ResponseEntity.notFound().build();
     }
 
-    @PutMapping(value = "/{id}")
-    public ResponseEntity<Category> update(@Valid @RequestBody Category _category, BindingResult bindingResult) {
-        if(bindingResult.hasErrors())
-            throw new ConstraintException(bindingResult.getAllErrors().get(0).getDefaultMessage());
-        _category = categoryService.update(_category);
-        return  ResponseEntity.ok().body(_category);
+    @ApiOperation(value = "Atualizar categoria")
+    @PutMapping(name = "Atualizar categoria", path = {"/{id}"})
+    public ResponseEntity<CategoryResponseDTO> update(@PathVariable Long id, @Valid @RequestBody CategoryRequestDTO categoryDto) {
+        Category categoryUpdate = categoryService.update(categoryDto.convertToEntity(id));
+        return ResponseEntity.ok(CategoryResponseDTO.convertToCategoryDTO(categoryUpdate));
     }
 
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    @ApiOperation(value = "Deletar categoria")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping(name = "Deletar categoria", path = {"/{id}"})
+    public void delete(@PathVariable Long id) {
         categoryService.delete(id);
-        return ResponseEntity.noContent().build();
     }
 
-    @GetMapping(value = "/byTitle/{title}")
-    public ResponseEntity<Collection<Category>> findByTitle(@PathVariable String title) {
-        Collection<Category> categories = categoryService.findByTitle(title);
-        return ResponseEntity.ok(categories);
-    }
 
-    private CategoryDTO convertToDTO(Category category) {
-        CategoryDTO categoryDTO = modelMapper.map(category, CategoryDTO.class);
-        categoryDTO.setId(category.getId());
-        categoryDTO.setTitle(category.getTitle());
-        categoryDTO.setDescription(category.getDescription());
-        return categoryDTO;
-    }
-
-    private Category convertToEntity(CategoryDTO categoryDTO) throws ParseException {
-        Category category = modelMapper.map(categoryDTO, Category.class);
-        category.setId(categoryDTO.getId());
-        category.setTitle(categoryDTO.getTitle());
-        category.setDescription(categoryDTO.getDescription());
-
-        if(categoryDTO.getId() != null) {
-            Category oldCategory = categoryService.findById(categoryDTO.getId());
-        }
-        return category;
-
-    }
 }

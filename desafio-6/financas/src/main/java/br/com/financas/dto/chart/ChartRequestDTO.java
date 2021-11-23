@@ -1,4 +1,4 @@
-package br.com.financas.models.dto;
+package br.com.financas.dto.chart;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ChartDTO {
+public class ChartRequestDTO {
     private String entryAmount;
     private String categoryTitle;
     private String entryTitle;

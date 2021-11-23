@@ -1,10 +1,10 @@
-package br.com.financas.models.service;
+package br.com.financas.service;
 
-import br.com.financas.models.entities.Entry;
-import br.com.financas.models.repository.CategoryRepository;
-import br.com.financas.models.repository.EntryRepository;
-import br.com.financas.models.service.exceptions.DataIntegrityViolationException;
-import br.com.financas.models.service.exceptions.ObjectNotFoundException;
+import br.com.financas.entity.Entry;
+import br.com.financas.repository.CategoryRepository;
+import br.com.financas.repository.EntryRepository;
+import br.com.financas.exception.DataIntegrityViolationException;
+import br.com.financas.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +31,7 @@ public class EntryService {
         return entryRepository.findAll();
     }
 
-    public Entry insert(final Entry _entry) {
+    public Entry insert(Entry _entry) {
         try {
             return entryRepository.save(_entry);
         } catch (DataIntegrityViolationException e) {
