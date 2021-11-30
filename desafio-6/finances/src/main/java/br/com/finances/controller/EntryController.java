@@ -35,7 +35,7 @@ public class EntryController {
     @ApiOperation(value = "Listar lançamento pelo Id")
     @GetMapping(name = "Listar lançamento pelo Id", path = {"/{id}"})
     public ResponseEntity<EntryResponseDTO> find(@PathVariable Long id) {
-        Optional<Entry> entry = service.findById(id);
+        Optional<Entry> entry = Optional.ofNullable(service.findById(id));
         return entry.map(value -> ResponseEntity
                         .ok(EntryResponseDTO.convertEntryDTO(value)))
                 .orElseGet(() -> ResponseEntity.notFound().build());
