@@ -24,8 +24,9 @@ public class SwaggerConfig {
     private ApiInfo info() {
         return new ApiInfoBuilder()
                 .title("API Finances - Trilha Backend Java")
-                .description("Aplicação para gerenciar suas finanças pessoas")
-                .version("1.0.0")
+                .description("Aplicação para gerenciar suas finanças pessoais")
+                .version("desafio 6")
                 .build();
     }
 }
+

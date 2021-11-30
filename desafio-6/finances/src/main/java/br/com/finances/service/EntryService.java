@@ -6,6 +6,7 @@ import br.com.finances.repository.EntryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,9 +36,9 @@ public class EntryService {
             entryRepository.deleteById(id);
     }
 
-//    public Optional<Entry> findByPaid(boolean paid) {
-//        return entryRepository.findByPaid(paid);
-//    }
+    public Collection<Entry> findByPaid(boolean paid) {
+        return entryRepository.findByPaid(paid);
+    }
 
 
 

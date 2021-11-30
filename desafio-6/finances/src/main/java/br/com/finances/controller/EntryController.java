@@ -50,10 +50,11 @@ public class EntryController {
 
     @ApiOperation(value = "Atualizar lançamento")
     @PutMapping(name = "Atualizar lançamento", path = {"/{id}"})
-    public ResponseEntity<EntryResponseDTO> update(@PathVariable Long categoryID, @Valid @RequestBody EntryRequestDTO entryRequestDTO) {
-        Entry entryUpdate = service.update(entryRequestDTO.convertToEntity(categoryID));
+    public ResponseEntity<EntryResponseDTO> update(@PathVariable Long id, @Valid @RequestBody EntryRequestDTO entryRequestDTO) {
+        Entry entryUpdate = service.update(entryRequestDTO.convertToEntity(id));
         return ResponseEntity.ok(EntryResponseDTO.convertEntryDTO(entryUpdate));
     }
+
 
     @ApiOperation(value = "Deletar lançamento")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -61,12 +62,12 @@ public class EntryController {
     public void delete(@PathVariable Long id) {service.delete(id);
     }
 
-//    @ApiOperation(value = "Listar lançamento por pagamento")
-//    @GetMapping(name = "Listar lançamento por pagamento", path = {"/pago"})
-//    public ResponseEntity<EntryResponseDTO> find(@PathVariable Boolean paid) {
-//        Optional<Entry> entry = service.findByPaid(paid);
-//        return entry.map(value -> ResponseEntity.ok(EntryResponseDTO.convertEntryDTO(value))).orElseGet(() -> ResponseEntity.notFound().build());
-//    }
+    @ApiOperation(value = "Retornar lançamentos pagos")
+    @GetMapping(value = "/paid")
+    public ResponseEntity<Collection<Entry>> findByPaid() {
+        Collection<Entry> entries = service.findByPaid(true);
+        return ResponseEntity.ok(entries);
+    }
 
 
 }
