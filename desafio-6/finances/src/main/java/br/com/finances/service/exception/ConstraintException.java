@@ -1,4 +1,4 @@
-package br.com.finances.exception;
+package br.com.finances.service.exception;
 
 public class ConstraintException extends RuntimeException {
     private static final long serialVersionUID = 1L;

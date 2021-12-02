@@ -1,8 +1,9 @@
 package br.com.finances.controller;
 
+import br.com.finances.dto.request.ChartRequestDTO;
 import br.com.finances.dto.response.CategoryResponseDTO;
+import br.com.finances.dto.response.ChartResponseDTO;
 import br.com.finances.dto.response.EntryResponseDTO;
-import br.com.finances.entity.Category;
 import br.com.finances.entity.Entry;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -69,6 +70,11 @@ public class EntryController {
         return ResponseEntity.ok(entries);
     }
 
+    @ApiOperation(value = "Retorna gráfico")
+    @GetMapping("/chart")
+    public List<EntryRequestDTO> getDTO() {
+        return service.getListDTO();
+    }
 
 }
 

@@ -1,4 +1,4 @@
-package br.com.finances.exception;
+package br.com.finances.service.exception;
 
 public class ObjectNotFoundException extends RuntimeException {
 
