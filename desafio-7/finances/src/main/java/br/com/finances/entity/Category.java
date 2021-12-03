@@ -22,10 +22,10 @@ public class Category {
     private Long id;
 
     @NotBlank(message = "{Campo(s) obrigatórios não foram preenchidos}")
-    @Size(min = 3, max = 15, message = "{O nome deve ter entre 3 e 15 caracteres}")
+    @Size(min = 3, max = 15, message = "{A mensagem deve ter entre 3 e 15 caracteres}")
     private String name;
 
-    @NotBlank(message="{Campo(s) obrigatórios não foram preenchidos}")
+    @NotBlank(message = "{Campo(s) obrigatórios não foram preenchidos}")
     @Size(min = 3, max = 15, message = "{A descrição deve ter entre 3 e 15 caracteres}")
     private String description;
 
@@ -36,7 +36,6 @@ public class Category {
 
 
     public Category(Long id) {
-
         this.id = id;
     }
 

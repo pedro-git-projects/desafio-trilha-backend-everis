@@ -1,13 +1,9 @@
 package br.com.finances.service;
 
-import br.com.finances.dto.request.ChartRequestDTO;
 import br.com.finances.dto.request.EntryRequestDTO;
 import br.com.finances.dto.response.ChartResponseDTO;
-import br.com.finances.dto.response.EntryResponseDTO;
 import br.com.finances.entity.Entry;
 import br.com.finances.repository.CategoryRepository;
-import br.com.finances.service.exception.DataIntegrityViolationException;
-import br.com.finances.service.exception.ObjectNotFoundException;
 import br.com.finances.repository.EntryRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,19 +32,11 @@ public class EntryService {
     }
 
     public Entry findById(final Long id) {
-        try {
             return  entryRepository.findById(id).orElse(null);
-        } catch (NoSuchElementException e) {
-            throw new ObjectNotFoundException("Objeto não encontrado!: " +  id + ", Tipo: " + Entry.class.getName());
-        }
     }
 
     public Entry save(Entry entry) {
-        try {
-            return entryRepository.save(entry);
-        } catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityViolationException("Campo(s) obrigatório(s) não foram preenchidos");
-        }
+        return entryRepository.save(entry);
     }
 
     // Bloco Try Catch está quebrando o update
@@ -58,11 +46,7 @@ public class EntryService {
 
     public void delete(final Long id) {
         findById(id);
-        try {
-            entryRepository.deleteById(id);
-        } catch (final DataIntegrityViolationException e) {
-            throw new DataIntegrityViolationException("Não foi possível excluir o lançamento.");
-        }
+        entryRepository.deleteById(id);
     }
 
     public Collection<Entry> findByPaid(boolean paid) {

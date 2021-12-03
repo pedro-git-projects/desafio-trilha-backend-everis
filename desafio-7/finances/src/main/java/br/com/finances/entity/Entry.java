@@ -4,11 +4,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Objects;
 
 @Data
 @AllArgsConstructor
@@ -33,12 +31,11 @@ public class Entry {
     @Size(min = 3, max = 15, message = "{A descrição deve ter entre 3 e 15 caracteres}")
     private String description;
 
-    @NotNull(message = "{Campo(s) obrigatórios não foram preenchidos}")
-    @Size(min = 3, max = 10, message = "{A mensagem deve ter entre 3 e 10 caracteres}")
+    @NotBlank(message = "{Campo(s) obrigatórios não foram preenchidos}")
+    @Size(min = 3, max = 15, message = "{O tipo}")
     private String type;
 
     @NotNull(message = "{Campo(s) obrigatórios não foram preenchidos}")
-    @Min(value = 0, message = "{O valor não pode ser menor do que zero}")
     private String amount;
 
     @NotBlank(message = "{Campo(s) obrigatórios não foram preenchidos}")
