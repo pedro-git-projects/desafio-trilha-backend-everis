@@ -5,6 +5,8 @@ import br.com.finances.dto.response.CategoryResponseDTO;
 import br.com.finances.dto.response.ChartResponseDTO;
 import br.com.finances.dto.response.EntryResponseDTO;
 import br.com.finances.entity.Entry;
+import br.com.finances.service.exception.DivisionByZeroException;
+import br.com.finances.service.exception.handler.RestExceptionHandler;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,6 +77,14 @@ public class EntryController {
     public List<EntryRequestDTO> getDTO() {
         return service.getListDTO();
     }
+
+    @ApiOperation(value = "Calcula média")
+    @GetMapping("/calcula/{x}/{y}")
+    public ResponseEntity<Integer> calculaMedia(@PathVariable Integer x, @PathVariable Integer y) {
+        Integer calculaMedia = service.calculaMedia(x, y);
+        return ResponseEntity.ok(calculaMedia);
+    }
+
 
 }
 
