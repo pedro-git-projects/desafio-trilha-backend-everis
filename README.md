@@ -9,7 +9,7 @@
 - [Desafio 6](https://github.com/pedro-git-projects/desafio-trilha-backend-everis/tree/master/desafio-6)
 - [Desafio 7](https://github.com/pedro-git-projects/desafio-trilha-backend-everis/tree/master/desafio-7)
 - [Desafio 8](https://github.com/pedro-git-projects/desafio-trilha-backend-everis/tree/master/desafio-8)
-- [Desafio 8](https://github.com/pedro-git-projects/desafio-trilha-backend-everis/tree/master/desafio-9)
+- [Desafio 9](https://github.com/pedro-git-projects/desafio-trilha-backend-everis/tree/master/desafio-9)
 
 ## Requisitos
 
