@@ -5,6 +5,7 @@ import br.com.finances.dto.response.ChartResponseDTO;
 import br.com.finances.entity.Entry;
 import br.com.finances.repository.CategoryRepository;
 import br.com.finances.repository.EntryRepository;
+import br.com.finances.service.exception.DivisionByZeroException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,6 +66,14 @@ public class EntryService {
         List<Entry> getEntries = entryRepository.findAll();
         entryRepository.getClass();
         return getEntries.stream().map(this::mapToDTO).collect(Collectors.toList());
+    }
+
+    public Integer calculaMedia(Integer x, Integer y) throws DivisionByZeroException {
+       if(y == 0) {
+           throw new DivisionByZeroException("Divisão por zero não é definida");
+       } else {
+           return x /y;
+       }
     }
 
 }

@@ -14,7 +14,8 @@ public class RestExceptionHandler {
 
     @ExceptionHandler(DivisionByZeroException.class)
     public ResponseEntity<?> DivisionByZeroException(DivisionByZeroException divisionByZeroException){
-       ExceptionDetails details = ExceptionDetails.Builder.newBuilder()
+       ExceptionDetails details = ExceptionDetails.Builder
+                .newBuilder()
                 .timestamp(new Date().getTime())
                 .status(HttpStatus.NOT_FOUND.value())
                 .title("Erro aritmético")

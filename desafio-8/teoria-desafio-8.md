@@ -58,3 +58,45 @@ e) Para que serve a annotation **@ControllerAdvice**?
 *Resposta:*
 
 Essa anotação serve para melhorar o funcionamento da anotação do exercício anterior: A @ExceptionHandler funciona apenas dentro do  controller onde foi definido. Caso haja vários controllers, precisamos separar os @ExecptionHandlers em uma única classe para tornar o código manutenível, @ControllerAdvice faz isso automaticamente. 
+
+
+i. Dentro da controller de lançamentos crie um endpoint com as seguintes características:
+
+calculaMedia
+Path:/calcula
+Metohd:GET
+Pathvariable: variáveis x e y
+RequestBody: Tipo Integer
+Response: retorna divisão x/y
+
+ii. Realize uma chamada passando o valor x = 10  e y = 5 e verifique o retorno agora faça outra chamada passando x = 10 e y = 0;
+
+iii. O que acontceu?
+
+*Resposta:*
+
+iii. Na primeira chamada, a resposta foi 2, na segunda um erro 500.
+
+iv. Agora faça o tratamento utilizando try catch e se necessário, finally; 
+
+v. Faça o tratamento utilizando throw e @ExceptionHandler;
+
+vi. Aproveitando o método criado com @ExceptionHandler crie sua própria classe para tratamento de exceltions utilizando @ControllerAdvice;
+
+vii. Realize novos testes, verifique o resultado final e esecreva sua própria conclusão sobre exceptions;
+
+*Resposta:* 
+
+Após o tratamento com try e catch, foi possível mostrar uma mensagem explicando o erro. Ao usar o @ExceptionHandler então, fui capaz de retornar um objeto com o erro, da forma:
+
+```json
+{
+  "title": "Erro aritmético",
+  "status": 404,
+  "detail": "Divisão por zero não é definida",
+  "timestamp": 1639055500056,
+  "developerMessage": "br.com.finances.service.exception.DivisionByZeroException"
+}
+```
+
+Isso sugere que o tratamento de excessões é indispensável caso desejemos utilizar a API em um ambiente de produção, porque torna seu uso mais compreensível e seguro.
