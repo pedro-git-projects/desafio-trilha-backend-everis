@@ -10,13 +10,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ChartResponseDTO {
-    private String entryAmount;
+    private Double entryAmount;
     private String categoryTitle;
     private String entryTitle;
     private String entryType;
-    private long amountSum;
+    private Double amountSum;
 
-    public ChartResponseDTO(String entryAmount, String categoryTitle, String entryTitle, String entryType) {
+    public ChartResponseDTO(Double entryAmount, String categoryTitle, String entryTitle, String entryType) {
         this.entryAmount = entryAmount;
         this.categoryTitle = categoryTitle;
         this.entryTitle = entryTitle;

@@ -28,7 +28,7 @@ public class EntryResponseDTO {
     private String type;
 
     @ApiModelProperty(value = "amount")
-    private String amount;
+    private Double amount;
 
     @ApiModelProperty(value = "date")
     private String date;
@@ -38,7 +38,7 @@ public class EntryResponseDTO {
 
     public EntryResponseDTO() {}
 
-    public EntryResponseDTO(Long id, CategoryResponseDTO categoryID, String name, String description, String type, String amount, String date, Boolean paid) {
+    public EntryResponseDTO(Long id, CategoryResponseDTO categoryID, String name, String description, String type, Double amount, String date, Boolean paid) {
         this.id = id;
         this.categoryID = categoryID;
         this.name = name;
@@ -49,7 +49,7 @@ public class EntryResponseDTO {
         this.paid = paid;
     }
 
-    public EntryResponseDTO(Long id, Category categoryID, String title, String description, String type, String amount, String date, Boolean paid) {
+    public EntryResponseDTO(Long id, Category categoryID, String title, String description, String type, Double amount, String date, Boolean paid) {
     }
 
     public static EntryResponseDTO convertEntryDTO(Entry entry) {

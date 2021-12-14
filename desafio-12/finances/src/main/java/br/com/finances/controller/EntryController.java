@@ -2,8 +2,8 @@ package br.com.finances.controller;
 
 import br.com.finances.dto.response.EntryResponseDTO;
 import br.com.finances.entity.Entry;
-import br.com.finances.service.exception.ObjectNotFoundException;
 import br.com.finances.service.exception.handler.NoContentException;
+import br.com.finances.service.exception.handler.NullEntryException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,22 +89,13 @@ public class EntryController {
     @ApiOperation("Filter")
     @GetMapping("/filter")
     @ResponseBody
-    public ResponseEntity getLancamentosDependentes(
-            @RequestParam(value = "dataLancamento", required = false) String dataLancamento,
+    public ResponseEntity<List<Entry>> getLancamentosDependentes(
+            @RequestParam(value = "data_lancamento", required = false) String dataLancamento,
             @RequestParam(value = "amount", required = false) Double amount,
-            @RequestParam(value = "paid", required = false) Boolean paid
-    ) throws ObjectNotFoundException, NoContentException {
-
-        return new ResponseEntity<>(service.getLancamentosDependentes(dataLancamento, amount, paid), HttpStatus.OK);
+            @RequestParam(value = "paid", required = false) boolean paid )
+    throws NullEntryException, NoContentException {
+        return new ResponseEntity<>(service.getLancamentosDependentes(dataLancamento, amount,paid),HttpStatus.OK);
     }
-
-//    public ResponseEntity<Object> getLancamentosDependentes(
-//            @RequestParam(value = "data_lancamento", required = false) String dataLancamento,
-//            @RequestParam(value = "amount", required = false) String amount,
-//            @RequestParam(value = "paid", required = false) boolean paid ) {
-//       return  ResponseEntity.ok().body(amount);
-//    }
-
 }
 
 

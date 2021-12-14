@@ -13,6 +13,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -84,23 +85,27 @@ public class EntryService {
     // Método para o desafio sobre testes
     /////////////////////////////////////
 
-    public List<Entry> getLancamentosDependentes(String dataLancamento, Double amount, Boolean paid) throws ObjectNotFoundException, NoContentException {
-
-        if (dataLancamento == null || amount == null){
-            throw new ObjectNotFoundException("=====Parâmetros com valores errados=====");
+//    public List<Entry> getLancamentosDependentes(String dataLancamento, Double amount, Boolean paid) {
+//        List<Entry> entries = entryRepository.findAll()
+//                .stream()
+//                .filter(entry -> entry.getDate().equals(dataLancamento) && entry.getAmount().equals(amount) && entry.getPaid() == paid)
+//                .collect(Collectors.toList());
+//        return  entries;
+//    }
+    public List<Entry> getLancamentosDependentes(String dataLancamento, Double amount, Boolean paid) throws  NullEntryException, NoContentException {
+        if (dataLancamento == null || amount == null) {
+            throw new NullEntryException("Parâmetros com valores errados");
         }
-        List<Entry>lancamentos = entryRepository.findAll()
+        List<Entry> entries = entryRepository.findAll()
                 .stream()
-                .filter(entry -> entry.getDate().equals(dataLancamento) && entry.getAmount().equals(amount) && entry.getPaid() == paid)
+                .filter(entry -> entry.getDate().equals(dataLancamento)
+                && entry.getAmount().equals(amount)
+                && entry.getPaid() == paid)
                 .collect(Collectors.toList());
-
-        if (CollectionUtils.isEmpty(lancamentos)){
-            throw new NoContentException("=====A lista está vazia=====");
+        if(CollectionUtils.isEmpty(entries)) {
+            throw new NoContentException("Não existe os dados pelo parâmetro passado.");
         }
-        return lancamentos;
+        return entries;
     }
-
-
-
 }
 

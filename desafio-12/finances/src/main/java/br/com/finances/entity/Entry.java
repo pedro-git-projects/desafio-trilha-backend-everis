@@ -36,7 +36,7 @@ public class Entry {
     private String type;
 
     @NotNull(message = "{Campo(s) obrigatórios não foram preenchidos}")
-    private String amount;
+    private Double amount;
 
     @NotBlank(message = "{Campo(s) obrigatórios não foram preenchidos}")
     private String date;
@@ -45,7 +45,7 @@ public class Entry {
     private Boolean paid;
 
 
-    public Entry(Category categoryID, String name, String description, String type, String amount, String date, Boolean paid) {
+    public Entry(Category categoryID, String name, String description, String type, Double amount, String date, Boolean paid) {
         this.id = id;
         this.categoryID = categoryID;
         this.name = name;

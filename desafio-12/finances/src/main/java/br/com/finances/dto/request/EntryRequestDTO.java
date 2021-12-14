@@ -20,7 +20,7 @@ public class EntryRequestDTO {
     private String type;
 
     @ApiModelProperty(value = "Amount")
-    private String amount;
+    private Double amount;
 
     @ApiModelProperty(value = "Date")
     private String date;
