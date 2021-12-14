@@ -84,14 +84,7 @@ public class EntryService {
     ///////////////////////////////////////
     // Método para o desafio sobre testes
     /////////////////////////////////////
-
-//    public List<Entry> getLancamentosDependentes(String dataLancamento, Double amount, Boolean paid) {
-//        List<Entry> entries = entryRepository.findAll()
-//                .stream()
-//                .filter(entry -> entry.getDate().equals(dataLancamento) && entry.getAmount().equals(amount) && entry.getPaid() == paid)
-//                .collect(Collectors.toList());
-//        return  entries;
-//    }
+    
     public List<Entry> getLancamentosDependentes(String dataLancamento, Double amount, Boolean paid) throws  NullEntryException, NoContentException {
         if (dataLancamento == null || amount == null) {
             throw new NullEntryException("Parâmetros com valores errados");
