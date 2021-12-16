@@ -8,8 +8,7 @@
 - [Desafio 5](https://github.com/pedro-git-projects/desafio-trilha-backend-everis/tree/master/desafio-5)
 - [Desafio 6](https://github.com/pedro-git-projects/desafio-trilha-backend-everis/tree/master/desafio-6)
 - [Desafio 7](https://github.com/pedro-git-projects/desafio-trilha-backend-everis/tree/master/desafio-7)
-- [Desafio 8](https://github.com/pedro-git-projects/desafio-trilha-backend-everis/tree/master/desafio-8)
-- [Desafio 9](https://github.com/pedro-git-projects/desafio-trilha-backend-everis/tree/master/desafio-9)
+- [Desafio 8](https://github.com/pedro-git-projects/desafio-trilha-backend-everis/tree/master/desafio-8) [Desafio 9](https://github.com/pedro-git-projects/desafio-trilha-backend-everis/tree/master/desafio-9)
 - [Desafio 10](https://github.com/pedro-git-projects/desafio-trilha-backend-everis/tree/master/desafio-10)
 - [Desafio 11](https://github.com/pedro-git-projects/desafio-trilha-backend-everis/tree/master/desafio-11)
 - [Desafio 12](https://github.com/pedro-git-projects/desafio-trilha-backend-everis/tree/master/desafio-12)
@@ -79,15 +78,16 @@ ng serve.
 Como a execução de projetos maven envolve comandos muito compridos, recomendo abrir a pasta finances em alguma IDE como IntelliJ, STS e Eclipse e rodar por ali.
 
 ## Imagens
-![imagem1] (/readme/desafio-13-final1.png)
 
-![imagem2] (/readme/desafio-13-final2.png)
+![imagem1] (desafio-13-final1.png)
 
-![imagem3] (/readme/desafio-13-final3.png)
+![imagem2] (desafio-13-final2.png)
 
-![imagem4] (/readme/desafio-13final4.png)
+![imagem3] (desafio-13-final3.png)
 
-![imagem5] (/readme/desafio-13-final5.png)
+![imagem4] (desafio-13final4.png)
 
-![imagem6] (/readme/desafio-13-final6.png)
+![imagem5] (desafio-13-final5.png)
+
+![imagem6] (desafio-13-final6.png)
 
