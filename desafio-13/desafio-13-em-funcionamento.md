@@ -37,10 +37,14 @@ ng serve.
 Como a execução de projetos maven envolve comandos muito compridos, recomendo abrir a pasta finances em alguma IDE como IntelliJ, STS e Eclipse e rodar por ali.
 
 ## Imagens
-![imagem1] ( ../desafio-13/imagens_readme/desafio-13-final1.png)
+![imagem1] (./imagens_readme/desafio-13-final2.png)
+
 ![imagem2] (../desafio-13/imagens_readme/desafio-13-final2.png)
+
 ![imagem3] (../desafio-13/imagens_readme/desafio-13-final3.png)
+
 ![imagem4] (../desafio-13/imagens_readme/desafio-13final4.png)
+
 ![imagem5] (../desafio-13/imagens_readme/desafio-13-final5.png)
 
 
